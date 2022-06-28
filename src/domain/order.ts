@@ -12,7 +12,7 @@ export interface Order {
   total: number;
 }
 
-export function createOrder(user: User, cart: Cart) {
+export function createOrder(user: User, cart: Cart): Order {
   return {
     user: user.id,
     cart,
