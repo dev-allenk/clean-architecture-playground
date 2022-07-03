@@ -1,16 +1,21 @@
-import { addProduct } from "../domain/cart";
-import { Product } from "../domain/product";
-import { hasAllergy, User } from "../domain/user";
-import { CartStorageService, NotificationService } from "./ports";
+import { addProduct } from "../domain/cart"
+import { Product } from "../domain/product"
+import { hasAllergy, User } from "../domain/user"
+import { useNotifier } from "../services/notificationService"
+import { useCartStorage } from "../services/storageService"
 
-const cartStorage: CartStorageService = {};
-const notifier: NotificationService = {};
+export function useAddToCart() {
+  const cartStorage = useCartStorage()
+  const notifier = useNotifier()
 
-function addToCart(user: User, product: Product) {
-  const isDangerous = product.toppings.some((item) => hasAllergy(user, item));
-  if (isDangerous) return notifier.notify("This item has allergy");
+  function addToCart(user: User, product: Product) {
+    const isDangerous = product.toppings.some((item) => hasAllergy(user, item))
+    if (isDangerous) return notifier.notify("This item has allergy")
 
-  const { cart } = cartStorage;
-  const updatedCart = addProduct(cart, product);
-  cartStorage.updateCart(updatedCart);
+    const { cart } = cartStorage
+    const updatedCart = addProduct(cart, product)
+    cartStorage.updateCart(updatedCart)
+  }
+
+  return { addToCart }
 }
