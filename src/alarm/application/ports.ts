@@ -1,8 +1,8 @@
 import { Alarm } from "../domain/alarm"
 
 export interface AlarmStorageService {
-  alarm: Alarm
-  updateAlarm(value: boolean): void
+  alarms: Alarm[]
+  updateAlarms(updatedAlarms: Alarm[]): void
 }
 
 export interface NotificationService {
@@ -10,5 +10,5 @@ export interface NotificationService {
 }
 
 export interface AlarmAPIService {
-  tryAlarmSetting(value: boolean): Promise<boolean>
+  tryAlarmSetting(alarm: Alarm): Promise<boolean>
 }
