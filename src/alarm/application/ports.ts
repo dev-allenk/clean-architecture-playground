@@ -11,4 +11,5 @@ export interface NotificationService {
 
 export interface AlarmAPIService {
   tryAlarmSetting(alarm: Alarm): Promise<boolean>
+  tryAlarmDelete(alarm: Alarm): Promise<boolean>
 }

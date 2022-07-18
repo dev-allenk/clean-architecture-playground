@@ -18,5 +18,15 @@ export function useAlarm() {
     const updatedAlarms = domain.addAlarm(alarms, alarm)
     storage.updateAlarms(updatedAlarms)
   }
-  return { addAlarm }
+
+  async function deleteAlarm(alarm: domain.Alarm) {
+    const result = await api.tryAlarmDelete(alarm)
+
+    if (!result) return notifier.notify("alarm setting failed")
+
+    const { alarms } = storage
+    const updatedAlarms = domain.deleteAlarm(alarms, alarm)
+    storage.updateAlarms(updatedAlarms)
+  }
+  return { addAlarm, deleteAlarm }
 }
