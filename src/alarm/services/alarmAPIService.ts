@@ -1,4 +1,4 @@
-import { fakeApi } from "../../services/api"
+import { fakeApi } from "./api"
 import { AlarmAPIService } from "../application/ports"
 import { Alarm } from "../domain/alarm"
 
