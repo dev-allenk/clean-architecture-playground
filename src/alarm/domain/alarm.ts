@@ -15,8 +15,7 @@ export function addAlarm(alarms: Alarm[], newAlarm: Alarm) {
 }
 
 export function deleteAlarm(alarms: Alarm[], targetAlarm: Alarm) {
-  alarms.pop()
-  return [...alarms]
+  return alarms.slice(0, -1)
 }
 
 export function updateAlarm(alarms: Alarm[], newAlarm: Alarm) {
