@@ -2,7 +2,7 @@ import { Alarm } from "../domain/alarm"
 
 export interface AlarmStorageService {
   alarms: Alarm[]
-  updateAlarms(updatedAlarms: Alarm[]): void
+  update(updatedAlarms: Alarm[]): void
 }
 
 export interface NotificationService {

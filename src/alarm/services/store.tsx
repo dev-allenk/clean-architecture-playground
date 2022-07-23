@@ -13,7 +13,7 @@ export function Provider({ children }: { children: React.ReactNode }) {
 
   const value = {
     alarms,
-    updateAlarms: (newAlarms: Alarm[]) => setAlarms(newAlarms),
+    update: (newAlarms: Alarm[]) => setAlarms(newAlarms),
   }
 
   return <StoreContext.Provider value={value}>{children}</StoreContext.Provider>

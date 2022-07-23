@@ -16,7 +16,7 @@ export function useAlarm() {
 
     const { alarms } = storage
     const updatedAlarms = domain.addAlarm(alarms, alarm)
-    storage.updateAlarms(updatedAlarms)
+    storage.update(updatedAlarms)
   }
 
   async function deleteAlarm(alarm: domain.Alarm) {
@@ -26,7 +26,7 @@ export function useAlarm() {
 
     const { alarms } = storage
     const updatedAlarms = domain.deleteAlarm(alarms, alarm)
-    storage.updateAlarms(updatedAlarms)
+    storage.update(updatedAlarms)
   }
   return { addAlarm, deleteAlarm }
 }
