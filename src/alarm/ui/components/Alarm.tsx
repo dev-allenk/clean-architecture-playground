@@ -1,4 +1,4 @@
-import { useAlarm } from "../../application/addAlarm"
+import { useAlarm } from "../../application/useAlarm"
 import * as domain from "../../domain/alarm"
 import { useAlarmStorage } from "../../services/storageService"
 
