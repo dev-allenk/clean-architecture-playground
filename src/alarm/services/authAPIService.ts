@@ -10,19 +10,32 @@ export default function authAPIService(): AuthAPIService {
 }
 
 function getRandomUser() {
-  const rest = Math.floor(Math.random() * 10) % 2
+  const rest = Math.floor(Math.random() * 10) % 3
   if (rest === 0) {
     return USER_A
   }
-  return USER_B
+  if (rest === 1) {
+    return USER_B
+  }
+  return USER_C
 }
 
 //fake DB
 const USER_A: User = {
   id: "1",
-  alarms: [],
+  alarms: [{ id: "11111111", isOn: true }],
 }
 const USER_B: User = {
   id: "2",
-  alarms: [{ id: "11111111", isOn: true }],
+  alarms: [
+    { id: "22222222", isOn: true },
+    { id: "33333333", isOn: true },
+  ],
+}
+const USER_C: User = {
+  id: "3",
+  alarms: [
+    { id: "123123", isOn: true },
+    { id: "234234", isOn: true },
+  ],
 }
