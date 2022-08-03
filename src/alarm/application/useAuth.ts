@@ -1,9 +1,10 @@
 import authAPIService from "../services/authAPIService"
 import { useNotifier } from "../services/notificationService"
-import { useUserStorage } from "../services/storageService"
+import { useAlarmStorage, useUserStorage } from "../services/storageService"
 
 export default function useAuth() {
-  const storage = useUserStorage()
+  const userStorage = useUserStorage()
+  const alarmStorage = useAlarmStorage()
   const api = authAPIService()
   const notifier = useNotifier()
 
@@ -12,7 +13,8 @@ export default function useAuth() {
       const user = await api.login(email, password)
       notifier.notify("login success")
 
-      storage.update(user)
+      alarmStorage.update(user.alarms)
+      userStorage.update(user)
     } catch (error) {
       notifier.notify("login failed. check your email and password")
     }
@@ -22,7 +24,8 @@ export default function useAuth() {
       await api.logout()
       notifier.notify("logout success")
 
-      storage.update(null)
+      alarmStorage.update([])
+      userStorage.update(null)
     } catch (error) {
       notifier.notify("logout failed. try again")
     }
