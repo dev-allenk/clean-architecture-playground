@@ -31,5 +31,5 @@ export default function useAuth() {
     }
   }
 
-  return { login, logout }
+  return { user: userStorage.user, login, logout }
 }
