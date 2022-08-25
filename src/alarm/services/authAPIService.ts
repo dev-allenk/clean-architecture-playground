@@ -24,6 +24,7 @@ function getRandomUser() {
 const USER_A: User = {
   id: "1",
   alarms: [{ id: "11111111", isOn: true }],
+  hasPurchased: false,
 }
 const USER_B: User = {
   id: "2",
@@ -31,6 +32,7 @@ const USER_B: User = {
     { id: "22222222", isOn: true },
     { id: "33333333", isOn: true },
   ],
+  hasPurchased: false,
 }
 const USER_C: User = {
   id: "3",
@@ -38,4 +40,5 @@ const USER_C: User = {
     { id: "123123", isOn: true },
     { id: "234234", isOn: true },
   ],
+  hasPurchased: false,
 }

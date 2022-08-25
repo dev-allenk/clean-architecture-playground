@@ -1,14 +1,18 @@
 import { useAlarmAPIService } from "../services/alarmAPIService"
 import { useNotifier } from "../services/notificationService"
-import { useAlarmStorage } from "../services/storageService"
+import { useAlarmStorage, useUserStorage } from "../services/storageService"
 import * as domain from "../domain/alarm"
 
 export function useAlarm() {
   const notifier = useNotifier()
   const api = useAlarmAPIService()
   const storage = useAlarmStorage()
+  const userStorage = useUserStorage()
 
   async function addAlarm() {
+    if (!userStorage.user?.hasPurchased)
+      return notifier.notify("구매자만 이용가능합니다.")
+
     const alarm = domain.createAlarm()
     const result = await api.tryAlarmSetting(alarm)
 
@@ -20,6 +24,9 @@ export function useAlarm() {
   }
 
   async function deleteAlarm(alarm: domain.Alarm) {
+    if (!userStorage.user?.hasPurchased)
+      return notifier.notify("구매자만 이용가능합니다.")
+
     const result = await api.tryAlarmDelete(alarm)
 
     if (!result) return notifier.notify("alarm setting failed")
